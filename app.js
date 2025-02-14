@@ -8,6 +8,8 @@ var indexRouter = require("./routes/index");
 var auth = require("./routes/auth");
 var category = require("./routes/category");
 var product = require("./routes/product");
+var Color = require("./routes/color");
+var size = require("./routes/size");
 require("dotenv").config();
 var app = express();
 app.use(cors());
@@ -27,6 +29,8 @@ app.use("/", indexRouter);
 app.use("/auth", auth);
 app.use("/api/category", category);
 app.use("/api/product", product);
+app.use("/api/color", Color);
+app.use("/api/size", size);
 
 // error handler
 server.listen(process.env.PORT, (req, res) => {
