@@ -36,7 +36,11 @@ const productSchema = new mongoose.Schema(
     Offers: [{ type: String }],
     size: [
       {
-        name: { type: String },
+        name: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "size",
+          required: false,
+        },
         totalStock: {
           type: Number,
           min: 0,
