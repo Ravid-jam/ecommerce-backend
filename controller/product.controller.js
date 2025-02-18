@@ -94,7 +94,7 @@ exports.addProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().populate(
-      "category subcategory pataCategory color"
+      "category subcategory pataCategory"
     );
     res.send({ data: products, message: "Product List", status: true });
   } catch (err) {
