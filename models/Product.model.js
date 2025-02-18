@@ -28,11 +28,12 @@ const productSchema = new mongoose.Schema(
     shipping: { type: String, required: false },
     deliveryDetail: { type: String, required: false },
     productDetail: { type: String, required: true },
-    color: {
+    colors: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Color",
-      required: false,
+      required: true,
     },
+
     Offers: [{ type: String }],
     size: [
       {
