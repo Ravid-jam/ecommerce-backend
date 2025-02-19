@@ -4,20 +4,20 @@ const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 exports.Register = async (req, res) => {
   try {
-    const { name, email, password, role, profile_pic } = req.body;
+    const { name, email, password, role } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).send({
         message: "Email already exists",
       });
-    } else if (!name || !email || !password || !role || !profile_pic) {
+    } else if (!name || !email || !password || !role) {
       return res.status(400).send({
         message: "Name, email, password,role and profile_pic are required",
       });
     }
-    const uploadImage = await cloudinary.uploader.upload(profile_pic, {
-      folder: "ecommerce/profile_pics",
-    });
+    // const uploadImage = await cloudinary.uploader.upload(profile_pic, {
+    //   folder: "ecommerce/profile_pics",
+    // });
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new User({
@@ -25,10 +25,10 @@ exports.Register = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      profile_pic: {
-        id: uploadImage.asset_id,
-        url: uploadImage.secure_url,
-      },
+      // profile_pic: {
+      //   id: uploadImage.asset_id,
+      //   url: uploadImage.secure_url,
+      // },
     });
     await newUser.save();
     res.status(201).send({

@@ -23,11 +23,11 @@ const UserSchema = new mongoose.Schema(
     profile_pic: {
       id: {
         type: String,
-        required: true,
+        required: false,
       },
       url: {
         type: String,
-        required: true,
+        required: false,
       },
     },
   },
